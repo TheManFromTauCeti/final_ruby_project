@@ -1,3 +1,10 @@
-<% @category.products.each do |product| %>
-  <p><%= link_to product.name, product %></p>
-<% end %>
+<div>
+  <% @category.products.each do |product| %>
+      <div class="card" style="width: 16rem;">
+        <div class="card-body">
+          <%= image_tag(product.image, class: "card-img-top")%>
+          <h5 class="card-title text-center"><%= link_to product.name, product %></h5>
+        </div>
+      </div>
+  <% end %>
+</div>
