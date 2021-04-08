@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  get 'categories/index'
-  get 'products/index'
-  get 'products/show'
+  resources :categories, only: %i[index show]
+  resources :products, only: %i[index show]
   root to: "home#index"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
