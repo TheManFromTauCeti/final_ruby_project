@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_184754) do
+ActiveRecord::Schema.define(version: 2021_04_12_185315) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -118,6 +118,15 @@ ActiveRecord::Schema.define(version: 2021_04_12_184754) do
     t.decimal "price"
     t.boolean "in_stock"
     t.integer "stock_quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "provinces", force: :cascade do |t|
+    t.string "name"
+    t.string "current_PST"
+    t.string "current_HST"
+    t.string "current_GST"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
