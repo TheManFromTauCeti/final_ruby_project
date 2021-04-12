@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'customers/index'
-  get 'customers/show'
-  get 'customers/create'
+  resources :customers, only: %i[index create show new]
   resources :categories, only: %i[index show]
   resources :products, only: %i[index show]
   root to: "home#index"
