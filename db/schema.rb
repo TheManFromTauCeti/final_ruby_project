@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_183828) do
+ActiveRecord::Schema.define(version: 2021_04_12_184754) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -82,6 +82,20 @@ ActiveRecord::Schema.define(version: 2021_04_12_183828) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.decimal "item_price"
+    t.integer "quantity"
+    t.decimal "PST"
+    t.decimal "GST"
+    t.decimal "HST"
+    t.integer "product_id", null: false
+    t.integer "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -110,6 +124,8 @@ ActiveRecord::Schema.define(version: 2021_04_12_183828) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
   add_foreign_key "orders", "customers"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
