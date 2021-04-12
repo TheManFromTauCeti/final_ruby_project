@@ -2,7 +2,9 @@
     <% @categories.each do |category| %>
         <div class="card" style="width: 16rem;">
           <div class="card-body">
-            <%# <%= image_tag(category.image, class: "card-img-top")%> %>
+            <% if category.image.present? %>
+              <%= image_tag(category.image, class: "card-img-top")%>
+            <% end %>
             <h5 class="card-title text-center"><%= link_to category.name, category %></h5>
           </div>
         </div>

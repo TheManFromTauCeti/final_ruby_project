@@ -10,7 +10,26 @@
     cart
   </div>
   <div class="col-md">
-    search
+    <div class="d-flex justify-content-center">
+      <div class="border border-primary rounded">
+        <div class="row p-3">
+          <%= bootstrap_form_with url: "/products", method: :get, bootstrap: { layout: "inline" } do |form| %>
+            <div class="col">
+              <%=
+                form.text_field :query, placeholder: "Search",
+                bootstrap: { label: {hidden: true }}
+              %>
+            </div>
+            <div class="col">
+              <%= form.collection_select :category_id, Category.order(:name), :id, :name, include_blank: "All" %>
+            </div>
+            <div class="col">
+              <%= form.submit "Search" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <h1 class="text-center">Ruby Gems Coffee Roasters</h1>

@@ -62,3 +62,5 @@ gem 'devise'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
 gem "mini_magick"
+
+gem "comfy_bootstrap_form", "~> 4.0.0"

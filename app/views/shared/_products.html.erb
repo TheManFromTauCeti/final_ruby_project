@@ -2,7 +2,9 @@
     <% @products.each do |product| %>
         <div class="card" style="width: 16rem;">
           <div class="card-body">
+          <% if product.image.present? %>
             <%= image_tag(product.image, class: "card-img-top")%>
+          <% end %>
             <h5 class="card-title text-center"><%= link_to product.name, product %></h5>
           </div>
         </div>
