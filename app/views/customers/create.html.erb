@@ -1,2 +1,5 @@
-<h1>Customers#create</h1>
-<p>Find me in app/views/customers/create.html.erb</p>
+<% if @worked %>
+  <p>Congrats! You've got a new account!</p>
+<% else %>
+  <p>Sorry, something went wrong. Maybe try again in a few minutes.</p>
+<% end %>

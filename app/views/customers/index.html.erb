@@ -1,2 +1,9 @@
-<h1>Customers#index</h1>
-<p>Find me in app/views/customers/index.html.erb</p>
+
+<%= bootstrap_form_with url: "/customers", method: :post, bootstrap: { layout: "inline" } do |form| %>
+  <%= form.text_field :first_name, required: true %>
+  <%= form.text_field :last_name, required: true %>
+  <%= form.email_field :email, required: true %>
+  <%= form.password_field :password, required: true %>
+  <%= form.password_field :password_confirmation, required: true %>
+  <%= form.submit "Log In" %>
+<% end %>
