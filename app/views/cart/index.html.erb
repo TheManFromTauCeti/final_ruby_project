@@ -1,0 +1,36 @@
+<%if @products %>
+  <p>Here's what you have in your cart<p>
+  <ul>
+  <% @products.each do |item| %>
+    <li>
+      <div class="row">
+        <div class="col-md">
+          <%= image_tag item.image.variant(resize_to_limit: [100, 100]) %>
+          <%= item.name %>
+          <%= item.price %>
+        </div>
+        <div class="col-md">
+          <%=
+            bootstrap_form_with url: "/cart/update/", method: :patch,
+            bootstrap: { layout: "horizontal" } do |form|
+          %>
+            <%= form.hidden_field :id, value: item.id %>
+            <%= form.number_field :quantity, in: 1..item.stock_quantity, value: @items[item.id.to_s], required: true %>
+              <%= form.submit "Update"%>
+          <% end %>
+        <div class="col-md">
+          <%=
+            bootstrap_form_with url: "/cart/delete/", method: :delete,
+            bootstrap: { layout: "horizontal" } do |form|
+          %>
+            <%= form.hidden_field :id, value: item.id %>
+              <%= form.submit "Remove"%>
+          <% end %>
+        </div>
+      </div>
+    </li>
+    <hr />
+  <% end %>
+<% else %>
+  <p>You don't have anything in your cart yet<p>
+<% end %>

@@ -1,8 +1,19 @@
 <h3><%= @product.name %></h3>
   <% if @product.image.present? %>
-    <%= image_tag @product.image %>
     <%= image_tag @product.image.variant(resize_to_limit: [400, 400]) %>
   <% end %>
 <p><%= @product.description %></p>
-<h5><%= @product.price %></h5>
-<h5><%= @product.stock_quantity %></h5>
+<h5>Price: $<%= @product.price %></h5>
+<h5>Quantity: <%= @product.stock_quantity %></h5>
+<% number = @product.stock_quantity %>
+<%= bootstrap_form_with url: "/cart/create", method: :post,  bootstrap: { layout: "horizontal" } do |form| %>
+  <div>
+    <%= form.hidden_field :id, value: @product.id %>
+  </div>
+  <div>
+    <%= form.number_field :quantity, in: 1..number, required: true %>
+  </div>
+  <div>
+    <%= form.submit "Add to Cart" %>
+  </div>
+<% end %>

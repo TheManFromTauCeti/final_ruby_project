@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_cart_session
-    session[:shopping_cart] ||= 0
+    session[:shopping_cart] ||= {}
+  end
+
+  def cart
+    Product.find(session[:shopping_cart])
   end
 end
