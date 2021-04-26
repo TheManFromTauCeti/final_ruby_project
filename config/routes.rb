@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   resources :customers, only: %i[index create show new]
+  get "/signin", to: "login#signin"
+  get "/signout", to: "login#signout"
   resources :categories, only: %i[index show]
   resources :products, only: %i[index show]
   root to: "home#index"

@@ -1,0 +1,5 @@
+<% if @logged_in_user %>
+  <p>Hello <%= @logged_in_user.first_name %>, you can start shopping!</p>
+<% else %>
+  <p>Sorry. Something went wrong. Please try signing in again.</p>
+<% end %>

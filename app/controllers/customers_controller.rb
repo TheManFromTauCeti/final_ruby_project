@@ -3,6 +3,11 @@ class CustomersController < ApplicationController
   end
 
   def show
+    customer_login = User.find_by(email: params[:email])&.authenticate(:password)
+
+    login unless customer_login
+
+    @customer = session[:customer_account]
   end
 
   def create

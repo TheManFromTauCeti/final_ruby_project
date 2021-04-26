@@ -1,10 +1,14 @@
-
+<% @user_account %>
 <div class="row">
   <div class="col-md-8">
     One of three columns
   </div>
   <div class="col-md">
-    <p><a href="/customers">Log In</a>/<a href="/customers/new">Create Account</a></p>
+    <% if @user_account %>
+      <p><%= @user_account["first_name"] %>/<a href="/signout">Sign Out</a></p>
+    <% else %>
+      <p><a href="/customers">Log In</a>/<a href="/customers/new">Create Account</a></p>
+    <% end %>
   </div>
   <div class="col-md">
     cart
