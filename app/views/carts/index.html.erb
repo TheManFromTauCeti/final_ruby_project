@@ -11,7 +11,7 @@
         </div>
         <div class="col-md">
           <%=
-            bootstrap_form_with url: "/cart/update/", method: :patch,
+            bootstrap_form_with url: carts_url, method: :post,
             bootstrap: { layout: "horizontal" } do |form|
           %>
             <%= form.hidden_field :id, value: item.id %>
@@ -20,7 +20,7 @@
           <% end %>
         <div class="col-md">
           <%=
-            bootstrap_form_with url: "/cart/delete/", method: :delete,
+            bootstrap_form_with url: cart_path(item.id), method: :delete,
             bootstrap: { layout: "horizontal" } do |form|
           %>
             <%= form.hidden_field :id, value: item.id %>

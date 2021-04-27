@@ -4,9 +4,7 @@ Rails.application.routes.draw do
   get "/signout", to: "login#signout"
   resources :categories, only: %i[index show]
   resources :products, only: %i[index show]
-  resources :cart, only: %i[index create update destroy]
-  # post "/cart/create", to: "cart#create"
-  # get "/cart/", to: "cart#index"
+  resources :carts
   root to: "home#index"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

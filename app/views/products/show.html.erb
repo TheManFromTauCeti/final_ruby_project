@@ -6,7 +6,7 @@
 <h5>Price: $<%= @product.price %></h5>
 <h5>Quantity: <%= @product.stock_quantity %></h5>
 <% number = @product.stock_quantity %>
-<%= bootstrap_form_with url: "/cart/create", method: :post,  bootstrap: { layout: "horizontal" } do |form| %>
+<%= bootstrap_form_with url: carts_url, method: :post,  bootstrap: { layout: "horizontal" } do |form| %>
   <div>
     <%= form.hidden_field :id, value: @product.id %>
   </div>
