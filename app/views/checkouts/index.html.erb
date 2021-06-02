@@ -1,0 +1,21 @@
+<% if @addresses.nil? %>
+  <h3>Please enter an address (note: your address will be saved for future deliveries)</h3>
+  <%= bootstrap_form_with url: checkout_url, method: :patch, bootstrap: { layout: "horizontal" } do |form| %>
+    <%= form.text_field :street, required: true %>
+    <%= form.text_field :city, required: true %>
+    <%= form.text_field :postal_code, required: true %>
+    <%= form.collection_select :province_id, Province.order(:name), :id, :name %>
+    <%= form.hidden_field :id, value: @customer_id %>
+    <%= form.submit "Add Address" %>
+  <% end %>
+<% else %>
+  <h3>Please select an address</h3>
+  <%= bootstrap_form_with url: new_checkout_url, method: :get, bootstrap: { layout: "horizontal" } do |form| %>
+    <% @addresses.each do |address| %>
+      <% address_label = "#{address.street} #{address.city} #{address.postal_code} #{address.province.name}"%>
+        <%= form.radio_button :id, address.id %>
+        <%= form.label :id, address_label %>
+    <% end %>
+    <%= form.submit "Send to Address" %>
+  <% end %>
+<% end %>

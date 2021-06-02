@@ -1,0 +1,30 @@
+<% if @addresses %>
+  <ul>
+  <% @addresses.each do |address| %>
+    <li>
+      <span>
+        <a href=<%= edit_address_path(address) %>>
+          <%= address.street %>, <%= address.city %>, <%= address.postal_code %>, <%= address.province.name %>
+        </a>
+        <%= form_for address, method: :delete do |f| %>
+          <% f.submit "Remove" %>
+        <% end %>
+      </span>
+    </li>
+    <hr />
+  <% end %>
+  </ul>
+<% else %>
+  You don't have any addresses
+<% end %>
+<h3>Add new Address</h3>
+<%= bootstrap_form_with url: addresses_url, method: :post, bootstrap: { layout: "horizontal" } do |form| %>
+  <%= form.text_field :street, required: true %>
+  <%= form.text_field :city, required: true %>
+  <%= form.text_field :postal_code, required: true %>
+  <%= form.collection_select :province_id, Province.order(:name), :id, :name %>
+  <%= form.hidden_field :id, value: @customer_id %>
+  <%= form.submit "Add Address" %>
+<% end %>
+
+

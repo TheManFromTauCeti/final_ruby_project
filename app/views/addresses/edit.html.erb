@@ -1,0 +1,9 @@
+<h3>Edit Address</h3>
+<%= bootstrap_form_with url: address_url, model: @address, method: :patch, bootstrap: { layout: "horizontal" } do |form| %>
+  <%= form.text_field :street,  required: true %>
+  <%= form.text_field :city, required: true %>
+  <%= form.text_field :postal_code, required: true %>
+  <%= form.collection_select :province_id, Province.order(:name), :id, :name %>
+  <%= form.hidden_field :id %>
+  <%= form.submit "Update Address" %>
+<% end %>

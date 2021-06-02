@@ -1,0 +1,35 @@
+<h2>Please confirm your order before completing your purchase</h2>
+<ul>
+<h3>Order</h3>
+<% sum = 0 %>
+<% gst = @address.province.current_GST %>
+<% hst = @address.province.current_HST %>
+<% pst = @address.province.current_PST %>
+<% @products.each do |item| %>
+  <li>
+    <div class="row">
+      <div class="col-md">
+        <%= image_tag item.image.variant(resize_to_limit: [100, 100]) %>
+      </div>
+      <div class="col-md">
+        <%= item.name %>
+        price: <%= item.price %>
+        quantity: <%= @items[item.id.to_s] %>
+      </div>
+    </div>
+  </li>
+  <hr />
+  <% sum += item.price.to_d %>
+<% end %>
+<h2>GST: <%= gst %></h2>
+<h2>HST: <%= hst %></h2>
+<h2>PST: <%= pst %></h2>
+<h1>Total: $<%= sum * (hst.to_d + gst.to_d + pst.to_d + 1) %></h1>
+<h3>Shipping Address</h3>
+<% address_label = "#{@address.street} #{@address.city} #{@address.postal_code} #{@address.province.name}"%>
+  <p><%= address_label %></p>
+<hr />
+<h4>Click Below to Confrim your Order</h4>
+<%= bootstrap_form_with url: checkouts_url, method: :post, bootstrap: { layout: "horizontal" } do |form| %>
+  <%= form.submit "Purchase" %>
+<% end %>

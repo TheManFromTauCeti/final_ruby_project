@@ -1,0 +1,11 @@
+<% if @address %>
+  <h1>Here's the address you created:</h1>
+  <span>
+    <p>
+        <%= @address.street %>, <%= @address.city %>, <%= @address.postal_code %>, <%= @address.province.name %>
+    </p>
+  </span>
+<% else %>
+  Address Creation wasn't successful!
+<% end %>
+<p><a href="/addresses">Return to Addresses</a></p>
